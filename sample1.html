@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://obniz.com/js/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/obniz/obniz.js"></script>
+
+    <title>Obniz LED WS2812B</title>
+  </head>
+  <body>
+    <div id="obniz-debug"></div>
+    <h1>
+      Obniz LED WS2812B Sample
+    </h1>
+    <script>
+      const obniz = new Obniz("XXXX-XXXX"); // your obniz id
+
+      obniz.onconnect = async function () {
+        // var leds = obniz.wired("WS2812B", { gnd: 0, vcc: 1, din: 2 }); // for obniz boards
+        var leds = obniz.wired("WS2812", { din: 26 }); // for M5 Atom lite
+        leds.rgbs([
+          [0x00, 0x66, 0x00],
+          [0x00, 0x00, 0x66],
+          [0x66, 0x00, 0x00],
+          [0x00, 0x66, 0x00],
+          [0x00, 0x00, 0x66],
+          [0x66, 0x00, 0x00],
+          [0x00, 0x66, 0x00],
+          [0x00, 0x00, 0x66],
+          [0x66, 0x00, 0x00],
+          [0x00, 0x66, 0x00],
+          [0x00, 0x00, 0x66],
+          [0x66, 0x00, 0x00],
+          [0x00, 0x66, 0x00],
+          [0x00, 0x00, 0x66],
+          [0x66, 0x66, 0x66]
+        ]);
+      };
+    </script>
+  </body>
+</html>

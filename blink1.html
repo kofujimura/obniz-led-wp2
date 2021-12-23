@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://obniz.com/js/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/obniz/obniz.js"></script>
+
+    <title>Static Template</title>
+  </head>
+  <body>
+    <div id="obniz-debug"></div>
+    <h1>
+      Obniz LED WS2812B Sample
+    </h1>
+    <script>
+      const obniz = new Obniz("XXXX-XXXX"); // your obniz id
+      const LED_length = 15;
+      let leds;
+
+      obniz.onconnect = async function () {
+        // var leds = obniz.wired("WS2812B", { gnd: 0, vcc: 1, din: 2 }); // for obniz boards
+        leds = obniz.wired("WS2812", { din: 26 }); // for M5 Atom lite
+        obniz.onloop = async function () {
+          ledon([0x66, 0x00, 0x00]);
+          obniz.wait(1000);
+          ledon([0x00, 0x66, 0x00]);
+          obniz.wait(1000);
+        };
+      };
+
+      function ledon(color) {
+        let ledlist = [];
+        for (let i = 0; i < LED_length; i++) {
+          ledlist.push(color);
+        }
+        leds.rgbs(ledlist);
+      }
+    </script>
+  </body>
+</html>
